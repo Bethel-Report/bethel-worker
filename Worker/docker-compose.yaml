@@ -1,0 +1,11 @@
+services:
+
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    container_name: worker-service
+
+    ports:
+      - "8081:8080"
