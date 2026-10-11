@@ -28,6 +28,11 @@
     </scm>
     <properties>
         <java.version>21</java.version>
+        <spotless-maven-plugin.version>3.10.4</spotless-maven-plugin.version>
+        <maven-checkstyle-plugin.version>3.3.1</maven-checkstyle-plugin.version>
+        <checkstyle.version>10.17.0</checkstyle.version>
+        <maven-pmd-plugin.version>3.28.0</maven-pmd-plugin.version>
+        <pmd.version>7.17.0</pmd.version>
     </properties>
     <dependencies>
         <dependency>
@@ -95,6 +100,92 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+            <plugin>
+                <groupId>com.diffplug.spotless</groupId>
+                <artifactId>spotless-maven-plugin</artifactId>
+                <version>${spotless-maven-plugin.version}</version>
+                <configuration>
+                    <java>
+                        <eclipse/>
+                        <removeUnusedImports/>
+                        <formatAnnotations/>
+                    </java>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>spotless-check</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>${maven-checkstyle-plugin.version}</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.puppycrawl.tools</groupId>
+                        <artifactId>checkstyle</artifactId>
+                        <version>${checkstyle.version}</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <configLocation>config/checkstyle/checkstyle.xml</configLocation>
+                    <suppressionsLocation>config/checkstyle/suppressions.xml</suppressionsLocation>
+                    <consoleOutput>true</consoleOutput>
+                    <failsOnError>true</failsOnError>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>checkstyle-validate</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>${maven-pmd-plugin.version}</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>net.sourceforge.pmd</groupId>
+                        <artifactId>pmd-java</artifactId>
+                        <version>${pmd.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>net.sourceforge.pmd</groupId>
+                        <artifactId>pmd-core</artifactId>
+                        <version>${pmd.version}</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <rulesets>
+                        <ruleset>config/pmd/pmd-ruleset.xml</ruleset>
+                    </rulesets>
+                    <failOnViolation>true</failOnViolation>
+                    <printFailingErrors>true</printFailingErrors>
+                    <targetJdk>${java.version}</targetJdk>
+                    <includeTests>true</includeTests>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>pmd-check</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

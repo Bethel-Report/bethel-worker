@@ -9,10 +9,9 @@ import org.testcontainers.utility.DockerImageName;
 @TestConfiguration(proxyBeanMethods = false)
 class TestcontainersConfiguration {
 
-    @Bean
-    @ServiceConnection
-    RabbitMQContainer rabbitContainer() {
-        return new RabbitMQContainer(DockerImageName.parse("rabbitmq:latest"));
-    }
-
+	@Bean
+	@ServiceConnection
+	RabbitMQContainer rabbitContainer() {
+		return new RabbitMQContainer(DockerImageName.parse("rabbitmq:latest"));
+	}
 }

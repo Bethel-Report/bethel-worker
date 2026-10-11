@@ -32,4 +32,7 @@ build/
 ### VS Code ###
 .vscode/
 
+### Node.js (used only for Git hooks / Commitlint) ###
+node_modules/
+
 .env
