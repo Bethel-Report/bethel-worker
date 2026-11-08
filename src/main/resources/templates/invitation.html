@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Convite — Bethel Report</title>
+</head>
+<body style="margin:0; padding:0; background-color:#f4f4f7; font-family:Arial, Helvetica, sans-serif;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0"
+         style="background-color:#f4f4f7; padding:40px 0;">
+    <tr>
+      <td align="center">
+        <table role="presentation" width="600" cellpadding="0" cellspacing="0"
+               style="max-width:600px; width:100%; background-color:#ffffff; border-radius:8px; overflow:hidden;">
+
+          <!-- Header -->
+          <tr>
+            <td style="background-color:#4f46e5; padding:32px 40px; text-align:center;">
+              <h1 style="margin:0; color:#ffffff; font-size:24px; font-weight:700;">
+                Bethel Report
+              </h1>
+            </td>
+          </tr>
+
+          <!-- Body -->
+          <tr>
+            <td style="padding:40px;">
+              <p style="margin:0 0 16px; color:#333333; font-size:16px; line-height:1.6;">
+                Olá,
+              </p>
+              <p style="margin:0 0 24px; color:#333333; font-size:16px; line-height:1.6;">
+                Você foi convidado(a) para acessar o <strong>Bethel Report</strong>.
+                Clique no botão abaixo para aceitar o convite e configurar sua conta.
+              </p>
+
+              <!-- CTA Button -->
+              <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 auto 24px;">
+                <tr>
+                  <td align="center" style="border-radius:6px; background-color:#4f46e5;">
+                    <a th:href="${invitationLink}" target="_blank" rel="noopener"
+                       style="display:inline-block; padding:14px 32px; color:#ffffff; font-size:16px; font-weight:600; text-decoration:none; border-radius:6px;">
+                      Aceitar Convite
+                    </a>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="margin:0 0 16px; color:#666666; font-size:14px; line-height:1.6;">
+                Se o botão não funcionar, copie e cole o link abaixo no seu navegador:
+              </p>
+              <p style="margin:0 0 24px; word-break:break-all;">
+                <a th:href="${invitationLink}" th:text="${invitationLink}"
+                   style="color:#4f46e5; font-size:14px;">
+                </a>
+              </p>
+
+              <p style="margin:0; color:#999999; font-size:13px; line-height:1.5;">
+                Se você não esperava este convite, pode ignorar este e-mail com segurança.
+              </p>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="background-color:#f9fafb; padding:24px 40px; text-align:center; border-top:1px solid #e5e7eb;">
+              <p style="margin:0; color:#9ca3af; font-size:12px;">
+                &copy; 2024 Bethel Report. Todos os direitos reservados.
+              </p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
