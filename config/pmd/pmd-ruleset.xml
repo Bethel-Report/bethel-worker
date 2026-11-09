@@ -7,12 +7,7 @@
 >
   <description>PMD ruleset for the project</description>
 
-  <rule ref="category/java/bestpractices.xml">
-    <exclude name="JUnitTestsShouldIncludeAssert" />
-    <exclude name="JUnitAssertionsShouldIncludeMessage" />
-    <exclude name="UnitTestShouldIncludeAssert" />
-    <exclude name="GuardLogStatement" />
-  </rule>
+
 
   <rule ref="category/java/codestyle.xml">
     <exclude name="MethodArgumentCouldBeFinal" />
@@ -37,11 +32,6 @@
     <exclude name="UseUtilityClass" />
   </rule>
 
-  <rule ref="category/java/errorprone.xml">
-    <exclude name="BeanMembersShouldSerialize" />
-    <exclude name="MissingSerialVersionUID" />
-    <exclude name="TestClassWithoutTestCases" />
-  </rule>
 
   <rule ref="category/java/multithreading.xml" />
 

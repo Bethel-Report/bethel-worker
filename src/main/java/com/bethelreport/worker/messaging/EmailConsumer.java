@@ -9,16 +9,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class EmailConsumer {
 
-	private final EmailService emailService;
+  private final EmailService emailService;
 
-	public EmailConsumer(EmailService emailService) {
-		this.emailService = emailService;
-	}
+  public EmailConsumer(EmailService emailService) {
+    this.emailService = emailService;
+  }
 
-	@RabbitListener(queues = "email.queue")
-	public void consume(EmailMessage message) {
-		log.info("Mensagem recebida para: {}", message.recipientEmail());
-		emailService.send(message);
-		log.info("E-mail enviado com sucesso para: {}", message.recipientEmail());
-	}
+  @RabbitListener(queues = "${app.messaging.email.queue}")
+  public void consume(EmailMessage message) {
+    emailService.send(message);
+    log.info("Email message sent successfully");
+  }
 }
