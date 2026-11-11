@@ -14,6 +14,13 @@ services:
       SMTP_USERNAME: ${SMTP_USERNAME}
       SMTP_PASSWORD: ${SMTP_PASSWORD}
       MAIL_FROM: ${MAIL_FROM}
+      DATABASE_URL: jdbc:postgresql://bethel-api-postgres:5432/bethel
+      DATABASE_USERNAME: ${DATABASE_USERNAME}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      MINIO_ENDPOINT: http://bethel-storage-minio:9000
+      MINIO_ACCESS_KEY: ${MINIO_ACCESS_KEY}
+      MINIO_SECRET_KEY: ${MINIO_SECRET_KEY}
+      MINIO_BUCKET: ${MINIO_BUCKET:-bethel-reports}
       SPRING_PROFILES_ACTIVE: prod
     networks:
       - net1
