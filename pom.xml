@@ -110,7 +110,7 @@
                 <version>${spotless-maven-plugin.version}</version>
                 <configuration>
                     <java>
-                        <eclipse/>
+                        <googleJavaFormat/>
                         <removeUnusedImports/>
                         <formatAnnotations/>
                     </java>
@@ -138,10 +138,11 @@
                     </dependency>
                 </dependencies>
                 <configuration>
-                    <configLocation>config/checkstyle/checkstyle.xml</configLocation>
+                    <configLocation>google_checks.xml</configLocation>
                     <suppressionsLocation>config/checkstyle/suppressions.xml</suppressionsLocation>
                     <consoleOutput>true</consoleOutput>
                     <failsOnError>true</failsOnError>
+                    <violationSeverity>warning</violationSeverity>
                 </configuration>
                 <executions>
                     <execution>

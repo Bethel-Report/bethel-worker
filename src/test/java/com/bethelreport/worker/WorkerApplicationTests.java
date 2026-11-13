@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Import;
 @SpringBootTest
 class WorkerApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+  @Test
+  void contextLoads() {}
 }
