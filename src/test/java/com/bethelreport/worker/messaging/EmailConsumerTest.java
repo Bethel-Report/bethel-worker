@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoInteractions;
 
 import com.bethelreport.worker.service.EmailService;
 import org.junit.jupiter.api.Test;
@@ -53,6 +54,30 @@ class EmailConsumerTest {
                 + "\"textBody\":\"Plain\",\"htmlBody\":null}");
 
     assertThat(message.recipientEmail()).isEqualTo("user@example.com");
+  }
+
+  @Test
+  void doesNotCallEmailServiceWhenMessageValidationFailsDuringDeserialization() {
+    assertThatThrownBy(
+            () ->
+                readMessage(
+                    "{\"recipient\":\"user@example.com\",\"subject\":\"Subject\",\"textBody\":\" \",\"htmlBody\":null}"))
+        .hasRootCauseInstanceOf(IllegalArgumentException.class);
+
+    verifyNoInteractions(emailService);
+  }
+
+  @Test
+  void rejectsMissingRecipientDuringDeserialization() {
+    assertThatThrownBy(() -> readMessage("{\"subject\":\"Subject\",\"textBody\":\"Plain\"}"))
+        .hasRootCauseInstanceOf(IllegalArgumentException.class);
+  }
+
+  @Test
+  void rejectsMissingBodiesDuringDeserialization() {
+    assertThatThrownBy(
+            () -> readMessage("{\"recipientEmail\":\"user@example.com\",\"subject\":\"Subject\"}"))
+        .hasRootCauseInstanceOf(IllegalArgumentException.class);
   }
 
   private EmailMessage readMessage(String json) {
